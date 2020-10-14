@@ -1,14 +1,14 @@
 module main(input[9:0] SW, input[3:0] KEY, input CLOCK_50, inout PS2_CLK, PS2_DAT, output VGA_CLK, VGA_HS, VGA_VS, VGA_BLANK_N, VGA_SYNC_N, output[7:0] VGA_R, VGA_G, VGA_B, output[6:0] HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, output[9:0]LEDR);
 	
 /*********************************************************************/
-/*							INTERNAL WIRES/REGISTERS								*/
+/*			INTERNAL WIRES/REGISTERS		     */
 /*********************************************************************/	
 
 	wire reset = KEY[0];
 	wire movement = 1;
 	
 /*********************************************************************/
-/*								FRAME_COUNTER MODULE									*/
+/*			FRAME_COUNTER MODULE			     */
 /*********************************************************************/		
 	
 	wire frame, transition_clock;
@@ -20,7 +20,7 @@ module main(input[9:0] SW, input[3:0] KEY, input CLOCK_50, inout PS2_CLK, PS2_DA
 	defparam f1.RATE = 4000;
 	
 /*********************************************************************/
-/*								PPS_COUNTER MODULES									*/
+/*			PPS_COUNTER MODULES			     */
 /*********************************************************************/
 	
 	wire player_enable, enemy1_enable_l1, enemy2_enable_l1; 
@@ -35,7 +35,7 @@ module main(input[9:0] SW, input[3:0] KEY, input CLOCK_50, inout PS2_CLK, PS2_DA
 	defparam pps_enemy2_l1.FRAMES_PER_PIXEL = 1;
 	
 /*********************************************************************/
-/*								PS2_MOVEMENT MODULE									*/
+/*			PS2_MOVEMENT MODULE			     */
 /*********************************************************************/
 
 	wire key_press;
@@ -45,7 +45,7 @@ module main(input[9:0] SW, input[3:0] KEY, input CLOCK_50, inout PS2_CLK, PS2_DA
 	PS2_Movement k0(CLOCK_50, reset, PS2_CLK, PS2_DAT, keyboard_data, key_press); 
 	
 /*********************************************************************/
-/*								CONTROLPATH_L1 MODULE								*/
+/*			CONTROLPATH_L1 MODULE			     */
 /*********************************************************************/
 	
 	wire w_plot_l1;
@@ -117,7 +117,7 @@ module main(input[9:0] SW, input[3:0] KEY, input CLOCK_50, inout PS2_CLK, PS2_DA
 						);
 								 				
 /*********************************************************************/
-/*								DATAPATH_L1 MODULE									*/
+/*			DATAPATH_L1 MODULE			     */
 /*********************************************************************/
  	
 	wire lose_l1;
@@ -191,7 +191,7 @@ module main(input[9:0] SW, input[3:0] KEY, input CLOCK_50, inout PS2_CLK, PS2_DA
 	
 
 /*********************************************************************/
-/*								PPS_COUNTER MODULES									*/
+/*			PPS_COUNTER MODULES			     */
 /*********************************************************************/
 
 	wire enemy1_enable_l2, enemy2_enable_l2, enemy3_enable_l2;
@@ -206,7 +206,7 @@ module main(input[9:0] SW, input[3:0] KEY, input CLOCK_50, inout PS2_CLK, PS2_DA
 	defparam pps_enemy3_l2.FRAMES_PER_PIXEL = 1;
 	
 /*********************************************************************/
-/*								CONTROLPATH_L2 MODULE								*/
+/*			CONTROLPATH_L2 MODULE			     */
 /*********************************************************************/
 	
 	wire w_plot_l2;
@@ -282,7 +282,7 @@ module main(input[9:0] SW, input[3:0] KEY, input CLOCK_50, inout PS2_CLK, PS2_DA
 						);
 								 				
 /*********************************************************************/
-/*								DATAPATH_L2 MODULE									*/
+/*			DATAPATH_L2 MODULE			     */
 /*********************************************************************/
  	
 	wire reset_l2 = reset && w_start_level2;
@@ -355,7 +355,7 @@ module main(input[9:0] SW, input[3:0] KEY, input CLOCK_50, inout PS2_CLK, PS2_DA
 					);
 					
 /*********************************************************************/
-/*								PPS_COUNTER MODULES									*/
+/*			PPS_COUNTER MODULES			     */
 /*********************************************************************/
 
 	wire enemy1_enable_l3, enemy2_enable_l3, enemy3_enable_l3, enemy4_enable_l3, enemy5_enable_l3;
@@ -376,7 +376,7 @@ module main(input[9:0] SW, input[3:0] KEY, input CLOCK_50, inout PS2_CLK, PS2_DA
 	defparam pps_enemy5_l3.FRAMES_PER_PIXEL = 1;
 	
 /*********************************************************************/
-/*								CONTROLPATH_L3 MODULE								*/
+/*			CONTROLPATH_L3 MODULE			     */
 /*********************************************************************/
 	
 	wire w_plot_l3;
@@ -470,7 +470,7 @@ module main(input[9:0] SW, input[3:0] KEY, input CLOCK_50, inout PS2_CLK, PS2_DA
 						);
 						
 /*********************************************************************/
-/*								DATAPATH_L3 MODULE									*/
+/*			DATAPATH_L3 MODULE			     */
 /*********************************************************************/
  	
 	wire reset_l3 = reset && w_start_level2 && w_start_level3;
@@ -563,7 +563,7 @@ module main(input[9:0] SW, input[3:0] KEY, input CLOCK_50, inout PS2_CLK, PS2_DA
 
 					);
 /*********************************************************************/
-/*									VGA_ADAPTER MODULE								*/
+/*		VGA_ADAPTER MODULE				     */
 /*********************************************************************/
 
 	
@@ -621,7 +621,7 @@ module main(input[9:0] SW, input[3:0] KEY, input CLOCK_50, inout PS2_CLK, PS2_DA
 	// for the VGA controller, in addition to any other functionality your design may require.
 	
 /*********************************************************************/
-/*										DEBUGGING										*/
+/*				DEBUGGING			     */
 /*********************************************************************/
 	
 	wire[4:0] state;
